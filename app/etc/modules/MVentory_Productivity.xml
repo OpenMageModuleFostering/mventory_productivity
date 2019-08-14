@@ -16,10 +16,16 @@
 -->
 
 <config>
-    <modules>
-        <MVentory_Productivity>
-            <active>true</active>
-            <codePool>community</codePool>
-        </MVentory_Productivity>
-    </modules>
+  <modules>
+    <MVentory_Productivity>
+      <active>true</active>
+      <codePool>community</codePool>
+    </MVentory_Productivity>
+
+    <Mage_Review>
+      <depends>
+        <MVentory_Productivity />
+      </depends>
+    </Mage_Review>
+  </modules>
 </config>
