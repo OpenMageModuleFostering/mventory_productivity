@@ -1,0 +1,436 @@
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE-OSL.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @package MVentory/Productivity
+ * @copyright Copyright (c) 2014 mVentory Ltd. (http://mventory.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+
+#productivity-panel {
+  background-color: white;
+  text-align: left;
+  overflow: hidden;
+  -webkit-transition: height 0.3s ease-in-out;
+  -moz-transition: height 0.3s ease-in-out;
+  -o-transition: height 0.3s ease-in-out;
+  transition: height 0.3s ease-in-out;
+}
+
+.productivity,
+.productivity * {
+  margin: 0;
+  padding: 0;
+}
+
+.productivity input.input-text,
+.productivity textarea {
+  padding: 2px;
+}
+
+.productivity select {
+  padding: 1px;
+}
+
+.productivity select option {
+  padding-right: 10px;
+}
+
+.productivity select.multiselect option {
+  padding: 2px 5px;
+}
+
+#productivity-panel .clearer:after,
+#productivity-edit-form .field-row:after {
+  clear: both;
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+#productivity-panel-menu {
+  background: linear-gradient(to top, #373737 0px, #464646 5px) repeat scroll 0 0 #464646;
+}
+
+#productivity-panel-menu * {
+  color: #ccc;
+  font: 13px/28px sans-serif;
+  height: 28px;
+}
+
+.productivity-set {
+  list-style: none outside none;
+}
+
+#productivity-context {
+  float: left;
+}
+
+#productivity-tasks {
+  float: right;
+}
+
+.productivity-set li {
+  border-left: 1px solid #555555;
+  float: left;
+}
+
+.productivity-set li:first-child {
+  border: none;
+}
+
+.productivity-set li:hover {
+  background: linear-gradient(to top, #3a3a3a, #222) repeat scroll 0 0 #222;
+}
+
+.productivity-set a {
+  display: block;
+  padding: 0 12px;
+  text-decoration: none;
+}
+
+.productivity-task-upload-on #productivity-task-upload,
+.productivity-task-edit-form-on #productivity-task-edit-form {
+  background: #fff;
+  color: #333333;
+}
+
+.productivity-task-upload-on #productivity-panel-content,
+.productivity-task-edit-form-on #productivity-panel-content {
+  height: auto;
+}
+
+.productivity-task-upload-on #productivity-uploader,
+.productivity-task-edit-form-on #productivity-edit-attributes {
+  display: block;
+}
+
+#productivity-task-close {
+  font-size: 17px;
+  font-weight: bold;
+  height: 29px;
+  margin-top: -1px;
+}
+
+#productivity-panel-content {
+  height: 0;
+  overflow: hidden;
+}
+
+#productivity-panel-content-inner {
+  padding: 10px;
+}
+
+/* Image options block */
+
+.box-store .store-map {
+  height: 300px;
+}
+
+.box-store pre.store-address {
+  margin: 0 0 10px;
+}
+
+.rotate-90 {
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=6.123031769111886e-17, M12=1, M21=-1, M22=6.123031769111886e-17);
+  zoom: 1;
+}
+
+.rotate90 {
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=6.123031769111886e-17, M12=-1, M21=1, M22=6.123031769111886e-17);
+  zoom: 1;
+}
+
+.tm-image-editor-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #C4C6C8;
+  padding: 4px 2px;
+  width: 104px;
+  z-index: 10;
+}
+
+.tm-image-editor-menu .rotate-image,
+.tm-image-editor-menu .remove-image,
+.tm-image-editor-menu .set-main-image {
+  display: block;
+  float: left;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #C4C6C8;
+  margin: 0 2px;
+  cursor: pointer;
+}
+
+.tm-image-editor-menu .rotate-image:hover,
+.tm-image-editor-menu .remove-image:hover,
+.tm-image-editor-menu .set-main-image:hover {
+  border-color: #DE5400;
+}
+
+.tm-image-editor-menu .rotate-image.rotate-left {
+  background: url('../images/rotate-left-icon.png') no-repeat center;
+}
+
+.tm-image-editor-menu .rotate-image.rotate-right {
+  background: url('../images/rotate-right-icon.png') no-repeat center;
+}
+
+.tm-image-editor-menu .remove-image {
+  background: url('../images/remove-icon.png') no-repeat center;
+}
+
+.tm-image-editor-menu .set-main-image {
+  background: url('../images/main-image-icon.png') no-repeat center;
+}
+
+#productivity-image-edit-panel.productivity-state-main-image {
+  width: 78px;
+}
+
+#productivity-image-edit-panel.productivity-scope-uploader {
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  padding: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.productivity-scope-uploader .rotate-image.rotate-left,
+.productivity-scope-uploader .rotate-image.rotate-right,
+.productivity-scope-uploader .remove-image,
+.productivity-scope-uploader .set-main-image {
+  background-color: #fff;
+  width: 36px;
+  height: 36px;
+  margin: 8px 0 0 8px;
+}
+
+.productivity-state-main-image .set-main-image {
+  display: none;
+}
+
+.productivity-state-warning {
+  border: 2px solid red !important;
+}
+
+.image-editor-loader{
+  display:none;
+  /* !!!FIX: add image to the extension */
+  background: url(/skin/frontend/default/default/images/loading.gif) no-repeat;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+  left: 50%;
+  margin-left: -16px;
+}
+
+#productivity-uploader {
+  display: none;
+}
+
+#productivity-uploader-notice {
+  display: none;
+}
+
+.productivity-state-uploaded #productivity-uploader-notice {
+  display: block;
+  -moz-animation: blink 1s 250ms 2;
+  -webkit-animation: blink 1s 250ms 2;
+  -o-animation: blink 1s 250ms 2;
+  -ms-animation: blink 1s 250ms 2;
+  animation: blink 1s 250ms 2;
+}
+
+#productivity-uploader-notice a {
+  background: url(../images/icon-attention.png) no-repeat 12px 7px;
+  padding: 0 12px 0 34px;
+}
+
+#productivity-uploader-notice span {
+  text-decoration: underline;
+}
+
+.productivity-task-edit-form-on #productivity-uploader {
+  float: left;
+  width: 104px;
+  margin: 0 20px 0 0;
+}
+
+#productivity-uploader-element {
+  display: none;
+}
+
+#productivity-uploader-dropzone,
+#productivity-uploader-previews li {
+  width: 100px;
+  height: 100px;
+  border: 2px solid lightgray;
+  margin: 0 10px 7px 0;
+}
+
+#productivity-uploader-dropzone-wrapper {
+  float: left;
+}
+
+#productivity-uploader-dropzone {
+  border-style: dashed;
+  margin: 0 0 10px 0;
+  background: url('../images/uploader/add.png') 37px 5px no-repeat;
+}
+
+#productivity-uploader-dropzone span {
+  display: block;
+  margin: 37px 0 0;
+  padding: 0 5px 5px;
+  text-align: center;
+}
+
+#productivity-uploader-previews {
+  display: block;
+  margin: 0 0 0 114px;
+}
+
+.productivity-task-edit-form-on #productivity-uploader-previews {
+  margin: 0;
+}
+
+#productivity-uploader-previews li {
+  display: inline-block;
+  background: none center no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+#productivity-uploader-previews .qq-upload-file,
+#productivity-uploader-previews .qq-upload-size,
+#productivity-uploader-previews .qq-upload-delete,
+#productivity-uploader-previews .qq-upload-retry,
+#productivity-uploader-previews .qq-upload-status-text {
+  display: none !important;
+}
+
+#productivity-uploader-previews .qq-upload-fail {
+  border-color: green;
+}
+
+#productivity-uploader-previews .qq-upload-fail {
+  border-color: red;
+}
+
+#productivity-uploader-previews .qq-upload-success {
+  border-color: greenyellow;
+}
+
+#productivity-uploader-previews .qq-upload-success:before {
+  background: url("../images/icon-edit.png") no-repeat 4px 3px rgba(255, 255, 255, 0.35);
+  border-radius: 0 0 3px 0;
+  content: "";
+  display: block;
+  height: 23px;
+  width: 23px;
+}
+
+#productivity-uploader-previews .qq-progress-bar {
+  background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(41,137,216,1) 50%, rgba(32,124,202,1) 51%, rgba(125,185,232,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(50%,rgba(41,137,216,1)), color-stop(51%,rgba(32,124,202,1)), color-stop(100%,rgba(125,185,232,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* W3C */
+  width: 0%;
+  height: 5px;
+  border-radius: 6px;
+  margin: 0 0 3px 0;
+  display: none;
+  position: absolute;
+  bottom: 0;
+}
+
+#productivity-uploader-previews .qq-upload-spinner {
+  display: block;
+  background: url('../images/uploader/loading.gif');
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -7.5px 0 0 -7.5px;
+}
+
+#productivity-uploader-previews .qq-upload-cancel {
+  display: block;
+  background: url('../images/uploader/cancel.png');
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: -8px;
+  top: -8px;
+}
+
+#productivity-edit-attributes {
+  float: left;
+  margin: 0 0 0 10px;
+  display: none;
+}
+
+#productivity-edit-attributes h3 {
+  margin: 0 0 5px 0;
+}
+
+#productivity-edit-attributes .field-row {
+  display: block;
+  margin: 0 0 10px;
+}
+
+#productivity-edit-attributes .field-row label {
+  display: block;
+  float: left;
+  width: 100px;
+}
+
+#productivity-edit-attributes .field-row input,
+#productivity-edit-attributes .field-row textarea {
+  width: 500px;
+}
+
+#productivity-edit-attributes .field-row select {
+  /* selects do not obey padding in the same way so add the extra width here */
+  width: 506px;
+}
+
+#productivity_edit_form_cancel,
+#productivity_edit_form_submit {
+  float: right;
+  margin: 0 0 0 5px;
+  padding: 2px 10px;
+  font-weight: bold;
+}
+
+/* Animations */
+
+@-webkit-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+@-moz-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+@-o-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+@-ms-keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }

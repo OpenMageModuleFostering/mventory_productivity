@@ -1,0 +1,197 @@
+<?php
+
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE-OSL.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @package MVentory/Productivity
+ * @copyright Copyright (c) 2014 mVentory Ltd. (http://mventory.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+
+?>
+
+<?php
+/* @var $this MVentory_Productivity_Block_Panel */
+$_helper = Mage::helper('productivity');
+$_type = $this->_getType();
+
+if ($_type == 'product') {
+  $__uploadTitle = $this->__('Upload a product image');
+  $__editTitle = $this->__('Edit product details');
+} else {
+  $__uploadTitle = $this->__('Select a product and click on Upload again to add more product images');
+  $__editTitle = $this->__('Select a product and click on Edit again to edit product details');
+
+  $_onClick = ' onclick="alert(this.title); return false;"';
+}
+
+?>
+
+<?php if ($_helper->isReviewerLogged()): ?>
+
+<div id="productivity-panel" class="productivity">
+  <div id="productivity-panel-menu" class="clearer">
+
+    <?php if ($_type == 'product'): ?>
+    <ul id="productivity-context" class="productivity-set">
+      <li id="productivity-uploader-notice">
+        <a title="<?php echo $this->__('Refresh the page to see changes'); ?>" href="<?php echo $this->_getCurrentUrl(); ?>"><?php echo $this->__('<span>Refresh</span> the page to see changes'); ?></a>
+      </li>
+    </ul>
+    <?php endif; ?>
+
+    <ul id="productivity-tasks" class="productivity-set">
+
+      <?php if ($url = $this->_getAnalyticsUrl()): ?>
+      <li>
+        <a title="<?php echo $this->__('Analytics reports'); ?>" href="<?php echo $url; ?>" target="_blank"><?php echo $this->__('Analytics'); ?></a>
+      </li>
+      <?php endif; ?>
+
+      <?php if ($_helper->isAdminLogged()): ?>
+
+      <?php
+
+      switch ($_type) {
+        case 'page':
+        case 'index': $_link = $this->_getCmsPageLink(); break;
+        case 'category': $_link = $this->_getCategoryLink(); break;
+        case 'product': $_link = $this->_getProductLink(); break;
+      }
+
+      ?>
+
+      <?php if (isset($_link) && $_link): ?>
+      <li>
+        <a title="<?php echo $this->__('Go to Magento admin panel'); ?>" href="<?php echo $_link ?>"><?php echo $this->__('Admin'); ?></a>
+      </li>
+      <?php endif; ?>
+
+      <?php endif; ?>
+
+      <li>
+        <a title="<?php echo $this->__('View products with no images'); ?>" href="<?php echo $this->_getWithoutImagesLink() ?>"><?php echo $this->__('No-image products'); ?></a>
+      </li>
+
+      <li>
+        <a title="<?php echo $__uploadTitle; ?>" id="productivity-task-upload" class="productivity-panel-task" href="#"<?php if (isset($_onClick)) echo $_onClick; ?>><?php echo $this->__('Upload') ?></a>
+      </li>
+
+      <li>
+        <a title="<?php echo $__editTitle; ?>" id="productivity-task-edit-form" class="productivity-panel-task" href="#"<?php if (isset($_onClick)) echo $_onClick; ?>><?php echo $this->__('Edit') ?></a>
+      </li>
+
+      <li>
+        <a title="<?php echo $this->__('About this extension'); ?>" href="<?php echo $this->_getHelpUrl(); ?>" target="_blank"><?php echo $this->__('Help') ?></a>
+      </li>
+
+      <?php if ($_type == 'product'): ?>
+      <li>
+        <a title="<?php echo $this->__('Hide the editing panel'); ?>" id="productivity-action-close" href="#">&times;</a>
+      </li>
+      <?php endif; ?>
+
+    </ul>
+  </div>
+
+  <?php if ($_type == 'product'): ?>
+  <div id="productivity-panel-content">
+    <div id="productivity-panel-content-inner" class="clearer">
+
+      <div id="productivity-uploader">
+        <div id="productivity-uploader-element"></div>
+
+        <div id="productivity-uploader-dropzone-wrapper">
+          <div id="productivity-uploader-dropzone">
+            <span><?php echo $this->__('Drag and drop product images to upload here'); ?></span>
+          </div>
+        </div>
+
+        <ul id="productivity-uploader-previews"></ul>
+      </div>
+
+      <?php //A quick form for editing select attributes in a hurry. ?>
+
+      <div id="productivity-edit-attributes">
+        <h3><?php echo $this->__('Edit product details'); ?></h3>
+
+        <div id="productivity-edit-form">
+          <?php echo $this->getEditForm()->setHtmlIdPrefix('productivity_edit_form_')->toHtml() ?>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <?php endif; ?>
+
+</div>
+
+<?php if ($_type == 'product'): ?>
+
+<script type="text/javascript">
+//<![CDATA[
+
+jQuery(function ($) {
+  var $panel = $('#productivity-panel');
+  var $content = $('#productivity-panel-content');
+
+  var menu_height = $('#productivity-panel-menu').height();
+
+  $panel.css('height', menu_height);
+
+  function resize_panel () {
+    $panel.css('height', $content.height() + menu_height);
+
+    return false;
+  }
+
+  $panel.on('mouseenter drop', resize_panel)
+
+  var tasks = '';
+
+  $('#productivity-tasks .productivity-panel-task').each(function () {
+    var $this = $(this);
+
+    var task = $this.attr('id') + '-on';
+
+    tasks += task + ' ';
+
+    $(this).on('click', function () {
+      $panel.hasClass(task)
+        ? $panel.removeClass(task)
+          : $panel.addClass(task);
+
+      resize_panel();
+
+      return false;
+    });
+  });
+
+  $('#productivity-action-close').on('click', function () {
+    $panel.removeClass(tasks);
+
+    resize_panel();
+
+    return false;
+  });
+
+  $('#productivity_edit_form_cancel').on('click', function () {
+    $panel.removeClass('productivity-task-edit-form-on');
+
+    resize_panel();
+
+    return false;
+  });
+});
+
+//]]>
+</script>
+
+<?php endif; ?>
+
+<?php endif; ?>
