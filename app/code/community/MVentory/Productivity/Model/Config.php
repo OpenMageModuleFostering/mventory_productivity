@@ -26,9 +26,16 @@ class MVentory_Productivity_Model_Config {
   const _CATEGORY_HOME_URL = 'productivity/category/home_url';
   const _DISPLAY_PRODUCTS = 'productivity/category/display_descending_products';
   const _PRODUCT_SAVE_SCOPE = 'productivity/product/save_scope';
+  const _EDITABLE_ATTRS = 'productivity/product/editable_attr';
+  const _COPY_ATTRS = 'productivity/product/copy_attrs';
   const _ANALYTICS_URL = 'productivity/analytics/url';
 
   //Product save scopes
   const PRODUCT_SCOPE_GLOBAL = 1;
   const PRODUCT_SCOPE_CURRENT = 2;
+
+  //Types of flatten category tree
+  const FLATTEN_NO = 0;
+  const FLATTEN_PATHS = 1;
+  const FLATTEN_EXPAND = 2;
 }

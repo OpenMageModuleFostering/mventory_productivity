@@ -219,30 +219,7 @@ class MVentory_Productivity_Helper_Data
       ->send();
   }
 
-  /**
-   * List attributes likely to be shown on product page.
-   *
-   * @param Mage_Catalog_Model_Product $product
-   * @return array of Mage_Catalog_Model_Resource_Eav_Attribute
-   */
-  public function getVisibleAttributes($product) {
-    $result = array();
-    if (!$product) return $result;
-
-    $attributes = $product->getAttributes();
-    // these attrs are always shown somewhere even if not "visible on front"
-    $result['name'] = $attributes['name'];
-    $result['description'] = $attributes['description'];
-    $result['price'] = $attributes['price'];
-
-    foreach ($attributes as $attribute) {
-      $code = $attribute->getAttributeCode();
-
-      if ($attribute->getIsVisibleOnFront() || substr($code, -1) === '_')
-        $result[$code] = $attribute;
-    }
-
-    return $result;
+  public function isMVentoryModuleEnabled () {
+    return parent::isModuleEnabled('MVentory_API');
   }
-
 }
