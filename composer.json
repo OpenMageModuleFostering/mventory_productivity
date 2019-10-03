@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/mVentory_Productivity",
+    "name": "OpenMageModuleFostering\/mVentory_Productivity",
     "type": "magento-module",
     "license": "Open-Software-License-version-3.0",
     "homepage": "",
     "description": "Edit products details, upload and manage photos via front end or use shortcuts directly to admin pages.",
     "authors": [
-    {
-        "name": "Anatoly A. Kazantsev",
-        "email": "anatoly@mventory.com"
-    }
-],
+        {
+            "name": "Anatoly A. Kazantsev",
+            "email": "anatoly@mventory.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
