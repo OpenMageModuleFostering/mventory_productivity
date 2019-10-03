@@ -1,3 +1,5 @@
+
+
 ## Original Package Description
 
 Edit products details, upload and manage photos via front end or use shortcuts directly to admin pages.
